@@ -3,290 +3,266 @@
 <html lang="ro">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MemeZone — The Meme Universe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MemeZone</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#0b0b12;color:#fff;font-family:Arial,sans-serif}
-header{height:70px;background:#141421;border-bottom:1px solid #29283b;position:sticky;top:0;z-index:10}
-.nav{max-width:1350px;width:94%;height:100%;margin:auto;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:25px;font-weight:950;letter-spacing:-1px}
-.logo span{color:#a78bfa}
-.navright{color:#aaa;font-size:12px}
-main{width:94%;max-width:1350px;margin:auto}
-.hero{text-align:center;padding:65px 10px 35px}
-.hero h1{font-size:clamp(40px,7vw,75px);margin:0;letter-spacing:-3px}
-.hero h1 span{color:#a78bfa}
-.hero p{color:#aaaabe;font-size:15px}
-.search{width:min(600px,100%);padding:16px;background:#171724;border:1px solid #38354d;border-radius:13px;color:white;font-size:16px;margin-top:18px;outline:none}
-.search:focus{border-color:#a78bfa}
-.toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin:30px 0 18px}
-.toolbar h2{margin:0;font-size:24px}
-.count{color:#aaa;font-size:13px}
-.categories{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}
-button{cursor:pointer;color:white;background:#191927;border:1px solid #302d43;border-radius:25px;padding:11px 16px;font-weight:bold}
-button:hover,button.active{background:#704bd0;border-color:#a78bfa}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
-.card{background:#171724;border:1px solid #302d43;border-radius:15px;overflow:hidden;cursor:pointer;transition:.2s;min-width:0}
-.card:hover{transform:translateY(-4px);border-color:#9071e7}
-.card img{width:100%;height:230px;object-fit:contain;background:#101018;display:block}
-.info{padding:13px}
-.info small{color:#b99aff;font-size:10px;font-weight:bold;text-transform:uppercase}
-.info h3{font-size:14px;line-height:1.4;margin:8px 0 0;overflow-wrap:anywhere}
-.empty,.loading{text-align:center;color:#aaa;padding:45px 10px}
-#more{display:block;margin:30px auto;padding:14px 25px;border-radius:12px;background:#704bd0;border:0}
-#more:disabled{opacity:.5;cursor:default}
-.modal{display:none;position:fixed;inset:0;background:#000e;z-index:30;align-items:center;justify-content:center;padding:20px}
+body{margin:0;background:#0b0b12;color:white;font-family:Arial,sans-serif}
+header{padding:25px 6%;background:#11111d;border-bottom:1px solid #28243a}
+.logo{font-size:32px;font-weight:900;color:#a875ff}
+.logo span{color:white}
+.subtitle{color:#999;margin-top:6px}
+.hero{text-align:center;padding:45px 15px 30px}
+.hero h1{font-size:clamp(30px,5vw,48px);margin:0}
+.hero p{color:#aaa}
+.search{width:min(600px,95%);padding:16px 20px;border-radius:14px;border:1px solid #393047;background:#171522;color:white;font-size:16px;outline:none}
+.categories{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding:15px}
+.categories button,.more{
+background:#1b1928;color:white;border:1px solid #383047;
+padding:11px 17px;border-radius:12px;cursor:pointer;font-weight:bold
+}
+.categories button.active,.categories button:hover,.more:hover{background:#8b55e8;border-color:#8b55e8}
+.status{text-align:center;padding:30px 10px;color:#c6a8ff}
+.status strong{display:block;font-size:19px;margin-bottom:9px}
+.spinner{width:28px;height:28px;border:3px solid #393047;border-top-color:#a875ff;border-radius:50%;animation:spin .8s linear infinite;margin:15px auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+.gallery{padding:15px 5%;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.card{background:#171522;border:1px solid #292538;border-radius:15px;overflow:hidden;cursor:pointer;transition:.2s}
+.card:hover{transform:translateY(-4px);border-color:#9664e9}
+.card img{width:100%;height:auto;display:block;min-height:100px;object-fit:contain;background:#111}
+.card p{padding:12px;margin:0;color:#ddd;font-size:13px;line-height:1.4}
+.empty{text-align:center;color:#aaa;padding:35px;display:none}
+.actions{text-align:center;padding:25px}
+.more{background:#8750df;padding:14px 25px}
+footer{text-align:center;color:#777;padding:30px}
+.modal{display:none;position:fixed;inset:0;background:#000e;z-index:10;align-items:center;justify-content:center;padding:20px}
 .modal.show{display:flex}
-.modalbox{background:#171724;border:1px solid #49415f;border-radius:17px;padding:15px;max-width:950px;width:100%;max-height:90vh;overflow:auto;text-align:center}
-.modalbox img{max-width:100%;max-height:70vh;object-fit:contain}
-.modalbox h3{font-size:17px}
-.close{position:fixed;right:20px;top:18px;background:#30234e;font-size:25px;width:43px;height:43px;border-radius:50%;padding:0}
-footer{text-align:center;color:#77758a;padding:40px 10px;margin-top:40px;border-top:1px solid #242336}
-@media(max-width:1050px){.grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:450px){.grid{grid-template-columns:1fr}.card img{height:270px}.navright{display:none}}
+.modal-content{max-width:900px;max-height:90vh;text-align:center}
+.modal img{max-width:100%;max-height:78vh;object-fit:contain;border-radius:12px}
+.modal p{color:white}
+.close{position:fixed;right:25px;top:20px;font-size:35px;cursor:pointer;color:white}
 </style>
 </head>
 <body>
+
 <header>
- <div class="nav">
-  <div class="logo">MEME<span>ZONE</span> 😂</div>
-  <div class="navright">THE INTERNET'S MEME GALLERY</div>
- </div>
+ <div class="logo">MEME<span>ZONE</span></div>
+ <div class="subtitle">Locul unde găsești meme-uri pentru orice situație.</div>
 </header>
 
-<main>
 <section class="hero">
- <h1>Welcome to <span>MemeZone.</span></h1>
- <p>Hundreds of memes. One place. Infinite laughs.</p>
- <input class="search" id="search" placeholder="🔎 Search memes...">
+ <h1>Internetul, într-un singur loc.</h1>
+ <p>Meme-uri românești, gaming, școală și multe altele.</p>
+ <input class="search" id="search" placeholder="Caută un meme..." />
 </section>
 
-<div class="toolbar">
- <h2>🔥 Meme Gallery</h2>
- <span class="count" id="count">Se încarcă meme-urile...</span>
+<nav class="categories" id="categories">
+ <button class="active" data-cat="all">Toate</button>
+ <button data-cat="romanian">Românești</button>
+ <button data-cat="minecraft">Minecraft</button>
+ <button data-cat="roblox">Roblox</button>
+ <button data-cat="school">Școală</button>
+ <button data-cat="reaction">Reacții</button>
+ <button data-cat="brainrot">Brainrot</button>
+</nav>
+
+<div class="status" id="status">
+ <strong>Se accesează serverele MemeZone...</strong>
+ Vă rugăm să așteptați. Se încarcă biblioteca de meme-uri.
+ <div class="spinner"></div>
 </div>
 
-<div class="categories">
- <button class="active" data-cat="all">🌎 All</button>
- <button data-cat="ro">🇷🇴 Romanian</button>
- <button data-cat="gaming">🎮 Gaming</button>
- <button data-cat="school">🏫 School</button>
- <button data-cat="reaction">😂 Memes</button>
- <button data-cat="brainrot">💀 Brainrot</button>
+<main class="gallery" id="gallery"></main>
+<div class="empty" id="empty">Nu am găsit meme-uri disponibile în această categorie.</div>
+
+<div class="actions">
+ <button class="more" id="more" style="display:none">Încarcă mai multe meme-uri</button>
+ <button class="more" id="retry" style="display:none">Încearcă din nou</button>
 </div>
 
-<div class="loading" id="loading">⏳ Se caută meme-uri pe internet...</div>
-<div class="grid" id="grid"></div>
-<div class="empty" id="empty" style="display:none">Nu am găsit meme-uri.</div>
-<button id="more" style="display:none">Încarcă mai multe meme-uri ↓</button>
-</main>
-
-<footer>MEMEZONE © 2026 · All memes in one place.</footer>
+<footer>© 2026 MemeZone · Toate meme-urile într-un singur loc</footer>
 
 <div class="modal" id="modal">
- <button class="close" id="close">×</button>
- <div class="modalbox">
-  <img id="modalImg" alt="Meme">
-  <h3 id="modalTitle"></h3>
+ <span class="close" id="close">×</span>
+ <div class="modal-content">
+  <img id="modalImg" alt="Meme mărit">
+  <p id="modalTitle"></p>
  </div>
 </div>
 
 <script>
-const communities = [
- {name:"memes",cat:"reaction"},
- {name:"dankmemes",cat:"reaction"},
- {name:"me_irl",cat:"reaction"},
- {name:"wholesomememes",cat:"reaction"},
- {name:"terriblefacebookmemes",cat:"reaction"},
- {name:"MinecraftMemes",cat:"gaming"},
- {name:"RobloxMemes",cat:"gaming"},
- {name:"gamingmemes",cat:"gaming"},
- {name:"SchoolMemes",cat:"school"},
- {name:"ProgrammerHumor",cat:"gaming"},
- {name:"romemes",cat:"ro"},
- {name:"okprietenretardat",cat:"ro"}
+const sources = [
+ {cat:"romanian", subs:["romemes","okprietenretardat"]},
+ {cat:"minecraft", subs:["MinecraftMemes"]},
+ {cat:"roblox", subs:["RobloxMemes"]},
+ {cat:"school", subs:["SchoolMemes"]},
+ {cat:"reaction", subs:["memes","dankmemes","me_irl","wholesomememes"]},
+ {cat:"brainrot", subs:["brainrot","GenZ"]},
 ];
 
-let allMemes=[];
+let memes=[];
+let visible=[];
+let currentCategory="all";
 let shown=0;
-let category="all";
-let query="";
-const grid=document.getElementById("grid");
+const perPage=24;
 
-function getImage(post){
- let url="";
- if(post.preview?.images?.[0]?.source?.url){
-  url=post.preview.images[0].source.url;
- }else if(post.post_hint==="image"){
-  url=post.url_overridden_by_dest||post.url;
- }
- if(!url)return "";
- return url.replaceAll("&amp;","&");
+const gallery=document.getElementById("gallery");
+const statusBox=document.getElementById("status");
+const empty=document.getElementById("empty");
+const more=document.getElementById("more");
+const retry=document.getElementById("retry");
+
+function imageFromPost(post){
+ const preview=post.preview?.images?.[0]?.source?.url;
+ if(preview) return preview.replaceAll("&amp;","&");
+ const url=post.url_overridden_by_dest || post.url || "";
+ if(/\.(jpg|jpeg|png|webp)(\?.*)?$/i.test(url)) return url;
+ return "";
 }
 
 function validPost(post){
- if(!post||post.over_18||post.is_video||post.stickied)return false;
- const url=getImage(post);
- if(!url)return false;
- if(!/^https?:\/\//i.test(url))return false;
- if(/\.gifv?(\?|$)/i.test(url))return false;
- return true;
+ if(!post || post.over_18 || post.stickied) return false;
+ if(post.is_video || post.post_hint==="hosted:video") return false;
+ if(post.gallery_data) return false;
+ return !!imageFromPost(post);
 }
 
-async function getCommunity(community){
+async function fetchWithTimeout(url,ms=9000){
+ const controller=new AbortController();
+ const timer=setTimeout(()=>controller.abort(),ms);
  try{
-  const url=`https://www.reddit.com/r/${community.name}/top.json?limit=100&t=all&raw_json=1`;
-  const response=await fetch(url);
-  if(!response.ok)throw new Error("Unavailable");
-  const data=await response.json();
-  return (data.data?.children||[])
-   .map(x=>x.data)
-   .filter(validPost)
-   .map(post=>({
-    id:post.id,
-    title:post.title||"Meme",
-    image:getImage(post),
-    cat:community.cat,
-    community:community.name
-   }));
- }catch(e){
-  return [];
+  const response=await fetch(url,{signal:controller.signal});
+  if(!response.ok) throw new Error("HTTP "+response.status);
+  return await response.json();
+ }finally{
+  clearTimeout(timer);
  }
 }
 
-function addCard(meme){
- const card=document.createElement("article");
- card.className="card";
- card.dataset.cat=meme.cat;
+async function getRedditPosts(sub){
+ const url=`https://www.reddit.com/r/${sub}/top.json?limit=100&t=all&raw_json=1`;
+ const proxies=[
+  url,
+  "https://corsproxy.io/?url="+encodeURIComponent(url),
+  "https://api.allorigins.win/raw?url="+encodeURIComponent(url)
+ ];
 
- const img=document.createElement("img");
- img.loading="lazy";
- img.alt=meme.title;
- img.src=meme.image;
-
- img.onerror=()=>{
-  card.remove();
-  allMemes=allMemes.filter(x=>x.id!==meme.id);
-  updateCount();
- };
-
- const info=document.createElement("div");
- info.className="info";
- const tag=document.createElement("small");
- tag.textContent=meme.community;
- const title=document.createElement("h3");
- title.textContent=meme.title;
-
- info.append(tag,title);
- card.append(img,info);
-
- card.onclick=()=>{
-  document.getElementById("modalImg").src=meme.image;
-  document.getElementById("modalTitle").textContent=meme.title;
-  document.getElementById("modal").classList.add("show");
- };
- return card;
+ for(const address of proxies){
+  try{
+   const data=await fetchWithTimeout(address);
+   const posts=data?.data?.children;
+   if(Array.isArray(posts)) return posts.map(x=>x.data).filter(validPost);
+  }catch(error){
+   // Sursa nu răspunde: încercăm următoarea variantă.
+  }
+ }
+ return [];
 }
 
-function updateCount(){
- document.getElementById("count").textContent=
- allMemes.length+" meme-uri găsite";
-}
+async function loadMemes(){
+ statusBox.style.display="block";
+ statusBox.innerHTML='<strong>Se accesează serverele MemeZone...</strong>Vă rugăm să așteptați. Se încarcă biblioteca de meme-uri.<div class="spinner"></div>';
+ retry.style.display="none";
+ more.style.display="none";
+ empty.style.display="none";
 
-function render(){
- grid.innerHTML="";
- const filtered=allMemes.filter(m=>{
-  const matchesCat=category==="all"||m.cat===category;
-  const text=(m.title+" "+m.community).toLowerCase();
-  return matchesCat&&text.includes(query);
+ const tasks=sources.flatMap(group=>
+  group.subs.map(async sub=>{
+   const posts=await getRedditPosts(sub);
+   return posts.map(post=>({
+    title:post.title || "Meme",
+    image:imageFromPost(post),
+    category:group.cat,
+    id:post.id
+   }));
+  })
+ );
+
+ const results=await Promise.allSettled(tasks);
+ memes=[];
+ const seen=new Set();
+
+ results.forEach(result=>{
+  if(result.status!=="fulfilled") return;
+  result.value.forEach(meme=>{
+   if(!meme.image || seen.has(meme.id)) return;
+   seen.add(meme.id);
+   memes.push(meme);
+  });
  });
 
- const batch=filtered.slice(0,shown);
- batch.forEach(m=>grid.appendChild(addCard(m)));
+ statusBox.style.display="none";
 
- document.getElementById("empty").style.display=
- filtered.length?"none":"block";
+ if(memes.length===0){
+  statusBox.style.display="block";
+  statusBox.innerHTML="<strong>Nu am putut încărca meme-urile.</strong>Sursele nu au răspuns. Puteți încerca din nou.";
+  retry.style.display="inline-block";
+  return;
+ }
 
- const more=document.getElementById("more");
- more.style.display=shown<filtered.length?"block":"none";
- more.disabled=false;
- more.textContent="Încarcă mai multe meme-uri ↓";
+ applyFilters();
 }
 
-function updateSearch(){
- query=document.getElementById("search").value.toLowerCase();
- shown=60;
- render();
+function applyFilters(){
+ const query=document.getElementById("search").value.toLowerCase().trim();
+ visible=memes.filter(m=>{
+  const categoryMatch=currentCategory==="all" || m.category===currentCategory;
+  const searchMatch=m.title.toLowerCase().includes(query);
+  return categoryMatch && searchMatch;
+ });
+ shown=0;
+ gallery.innerHTML="";
+ empty.style.display=visible.length?"none":"block";
+ renderMore();
 }
 
-document.getElementById("search").addEventListener("input",updateSearch);
+function renderMore(){
+ const batch=visible.slice(shown,shown+perPage);
+ batch.forEach(m=>{
+  const card=document.createElement("article");
+  card.className="card";
+  const img=document.createElement("img");
+  img.src=m.image;
+  img.alt="Meme";
+  img.loading="lazy";
+  img.onerror=()=>card.remove();
+  const title=document.createElement("p");
+  title.textContent=m.title;
+  card.append(img,title);
+  card.addEventListener("click",()=>openModal(m));
+  gallery.appendChild(card);
+ });
+ shown+=batch.length;
+ more.style.display=shown<visible.length?"inline-block":"none";
+}
 
-document.querySelectorAll(".categories button").forEach(btn=>{
- btn.onclick=()=>{
-  document.querySelectorAll(".categories button")
-   .forEach(b=>b.classList.remove("active"));
-  btn.classList.add("active");
-  category=btn.dataset.cat;
-  shown=60;
-  render();
- };
-});
-
-document.getElementById("more").onclick=()=>{
- shown+=60;
- render();
-};
+function openModal(m){
+ document.getElementById("modalImg").src=m.image;
+ document.getElementById("modalTitle").textContent=m.title;
+ document.getElementById("modal").classList.add("show");
+}
 
 document.getElementById("close").onclick=()=>{
  document.getElementById("modal").classList.remove("show");
 };
-
 document.getElementById("modal").onclick=e=>{
- if(e.target.id==="modal")
- document.getElementById("modal").classList.remove("show");
+ if(e.target.id==="modal") e.currentTarget.classList.remove("show");
 };
 
-document.addEventListener("keydown",e=>{
- if(e.key==="Escape")
- document.getElementById("modal").classList.remove("show");
+document.getElementById("search").addEventListener("input",applyFilters);
+document.getElementById("more").addEventListener("click",renderMore);
+document.getElementById("retry").addEventListener("click",loadMemes);
+
+document.querySelectorAll(".categories button").forEach(button=>{
+ button.addEventListener("click",()=>{
+  document.querySelectorAll(".categories button").forEach(b=>b.classList.remove("active"));
+  button.classList.add("active");
+  currentCategory=button.dataset.cat;
+  applyFilters();
+ });
 });
 
-async function start(){
- const loading=document.getElementById("loading");
-
- // Încarcă din mai multe comunități.
- const results=await Promise.all(
-  communities.map(c=>getCommunity(c))
- );
-
- const seen=new Set();
- results.flat().forEach(m=>{
-  if(!seen.has(m.id)){
-   seen.add(m.id);
-   allMemes.push(m);
-  }
- });
-
- // Amestecă rezultatele.
- for(let i=allMemes.length-1;i>0;i--){
-  const j=Math.floor(Math.random()*(i+1));
-  [allMemes[i],allMemes[j]]=[allMemes[j],allMemes[i]];
- }
-
- loading.style.display="none";
- updateCount();
- shown=60;
- render();
-
- if(!allMemes.length){
-  loading.style.display="block";
-  loading.textContent="Nu s-au putut încărca meme-uri. Serverele sursă pot fi temporar indisponibile.";
- }
-}
-
-start();
+loadMemes();
 </script>
 </body>
 </html>
