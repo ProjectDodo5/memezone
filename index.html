@@ -7,63 +7,66 @@
 <title>MemeZone</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#0b0b12;color:white;font-family:Arial,sans-serif}
-header{padding:25px 6%;background:#11111d;border-bottom:1px solid #28243a}
+body{margin:0;background:#0b0a12;color:#fff;font-family:Arial,sans-serif}
+header{padding:23px 6%;background:#12101d;border-bottom:1px solid #292438}
 .logo{font-size:32px;font-weight:900;color:#a875ff}
-.logo span{color:white}
-.subtitle{color:#999;margin-top:6px}
-.hero{text-align:center;padding:45px 15px 30px}
-.hero h1{font-size:clamp(30px,5vw,48px);margin:0}
+.logo span{color:#fff}
+.subtitle{color:#9691a5;margin-top:6px;font-size:13px}
+.hero{text-align:center;padding:48px 15px 25px}
+.hero h1{font-size:clamp(30px,5vw,48px);margin:0 0 12px}
 .hero p{color:#aaa}
-.search{width:min(600px,95%);padding:16px 20px;border-radius:14px;border:1px solid #393047;background:#171522;color:white;font-size:16px;outline:none}
-.categories{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding:15px}
+.search{width:min(600px,95%);padding:16px 19px;border-radius:13px;border:1px solid #39334b;background:#171421;color:white;font-size:16px;outline:none}
+.search:focus{border-color:#a875ff}
+.categories{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;padding:15px 12px 25px}
 .categories button,.more{
-background:#1b1928;color:white;border:1px solid #383047;
-padding:11px 17px;border-radius:12px;cursor:pointer;font-weight:bold
+background:#1b1928;color:#ddd;border:1px solid #383047;
+padding:11px 16px;border-radius:11px;cursor:pointer;font-weight:bold
 }
-.categories button.active,.categories button:hover,.more:hover{background:#8b55e8;border-color:#8b55e8}
-.status{text-align:center;padding:30px 10px;color:#c6a8ff}
+.categories button.active,.categories button:hover,.more:hover{background:#8750df;border-color:#8750df;color:white}
+.status{text-align:center;padding:35px 15px;color:#c6a8ff}
 .status strong{display:block;font-size:19px;margin-bottom:9px}
-.spinner{width:28px;height:28px;border:3px solid #393047;border-top-color:#a875ff;border-radius:50%;animation:spin .8s linear infinite;margin:15px auto}
+.spinner{width:29px;height:29px;border:3px solid #393047;border-top-color:#a875ff;border-radius:50%;animation:spin .8s linear infinite;margin:17px auto}
 @keyframes spin{to{transform:rotate(360deg)}}
-.gallery{padding:15px 5%;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
-.card{background:#171522;border:1px solid #292538;border-radius:15px;overflow:hidden;cursor:pointer;transition:.2s}
+.gallery{padding:12px 5%;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.card{background:#171522;border:1px solid #292538;border-radius:14px;overflow:hidden;cursor:pointer;transition:.2s}
 .card:hover{transform:translateY(-4px);border-color:#9664e9}
-.card img{width:100%;height:auto;display:block;min-height:100px;object-fit:contain;background:#111}
+.card img{width:100%;height:auto;max-height:360px;object-fit:contain;display:block;background:#111}
 .card p{padding:12px;margin:0;color:#ddd;font-size:13px;line-height:1.4}
 .empty{text-align:center;color:#aaa;padding:35px;display:none}
 .actions{text-align:center;padding:25px}
-.more{background:#8750df;padding:14px 25px}
-footer{text-align:center;color:#777;padding:30px}
+.more{background:#8750df;padding:14px 24px}
+footer{text-align:center;color:#777;padding:30px;border-top:1px solid #211e2c;margin-top:25px}
 .modal{display:none;position:fixed;inset:0;background:#000e;z-index:10;align-items:center;justify-content:center;padding:20px}
 .modal.show{display:flex}
-.modal-content{max-width:900px;max-height:90vh;text-align:center}
+.modal-content{max-width:950px;max-height:90vh;text-align:center}
 .modal img{max-width:100%;max-height:78vh;object-fit:contain;border-radius:12px}
 .modal p{color:white}
-.close{position:fixed;right:25px;top:20px;font-size:35px;cursor:pointer;color:white}
+.close{position:fixed;right:25px;top:15px;font-size:38px;cursor:pointer;color:white}
+.note{text-align:center;color:#777;font-size:12px;padding:0 15px 20px}
 </style>
 </head>
 <body>
 
 <header>
  <div class="logo">MEME<span>ZONE</span></div>
- <div class="subtitle">Locul unde găsești meme-uri pentru orice situație.</div>
+ <div class="subtitle">Meme-uri pentru orice situație.</div>
 </header>
 
 <section class="hero">
  <h1>Internetul, într-un singur loc.</h1>
- <p>Meme-uri românești, gaming, școală și multe altele.</p>
- <input class="search" id="search" placeholder="Caută un meme..." />
+ <p>Descoperă meme-uri din mai multe categorii.</p>
+ <input class="search" id="search" placeholder="Caută un meme..." autocomplete="off">
 </section>
 
 <nav class="categories" id="categories">
  <button class="active" data-cat="all">Toate</button>
- <button data-cat="romanian">Românești</button>
  <button data-cat="minecraft">Minecraft</button>
  <button data-cat="roblox">Roblox</button>
- <button data-cat="school">Școală</button>
+ <button data-cat="gaming">Gaming</button>
  <button data-cat="reaction">Reacții</button>
- <button data-cat="brainrot">Brainrot</button>
+ <button data-cat="genz">Brainrot</button>
+ <button data-cat="cringe">Cringe</button>
+ <button data-cat="dank">Dank memes</button>
 </nav>
 
 <div class="status" id="status">
@@ -73,14 +76,15 @@ footer{text-align:center;color:#777;padding:30px}
 </div>
 
 <main class="gallery" id="gallery"></main>
-<div class="empty" id="empty">Nu am găsit meme-uri disponibile în această categorie.</div>
+<div class="empty" id="empty">Nu am găsit meme-uri în această categorie.</div>
 
 <div class="actions">
  <button class="more" id="more" style="display:none">Încarcă mai multe meme-uri</button>
  <button class="more" id="retry" style="display:none">Încearcă din nou</button>
 </div>
 
-<footer>© 2026 MemeZone · Toate meme-urile într-un singur loc</footer>
+<div class="note">Meme-urile sunt furnizate de o sursă externă. Unele imagini pot să nu fie disponibile.</div>
+<footer>© 2026 MemeZone</footer>
 
 <div class="modal" id="modal">
  <span class="close" id="close">×</span>
@@ -91,20 +95,18 @@ footer{text-align:center;color:#777;padding:30px}
 </div>
 
 <script>
-const sources = [
- {cat:"romanian", subs:["romemes","okprietenretardat"]},
- {cat:"minecraft", subs:["MinecraftMemes"]},
- {cat:"roblox", subs:["RobloxMemes"]},
- {cat:"school", subs:["SchoolMemes"]},
- {cat:"reaction", subs:["memes","dankmemes","me_irl","wholesomememes"]},
- {cat:"brainrot", subs:["brainrot","GenZ"]},
+const API="https://cubsoftware.site/api/memes/";
+
+const categories=[
+ "minecraft","roblox","gaming","reaction",
+ "genz","cringe","dank"
 ];
 
 let memes=[];
-let visible=[];
 let currentCategory="all";
+let visible=[];
 let shown=0;
-const perPage=24;
+const PER_PAGE=24;
 
 const gallery=document.getElementById("gallery");
 const statusBox=document.getElementById("status");
@@ -112,90 +114,88 @@ const empty=document.getElementById("empty");
 const more=document.getElementById("more");
 const retry=document.getElementById("retry");
 
-function imageFromPost(post){
- const preview=post.preview?.images?.[0]?.source?.url;
- if(preview) return preview.replaceAll("&amp;","&");
- const url=post.url_overridden_by_dest || post.url || "";
- if(/\.(jpg|jpeg|png|webp)(\?.*)?$/i.test(url)) return url;
- return "";
+function showLoading(){
+ statusBox.style.display="block";
+ statusBox.innerHTML=
+ '<strong>Se accesează serverele MemeZone...</strong>'+
+ 'Vă rugăm să așteptați. Se încarcă biblioteca de meme-uri.'+
+ '<div class="spinner"></div>';
 }
 
-function validPost(post){
- if(!post || post.over_18 || post.stickied) return false;
- if(post.is_video || post.post_hint==="hosted:video") return false;
- if(post.gallery_data) return false;
- return !!imageFromPost(post);
-}
-
-async function fetchWithTimeout(url,ms=9000){
+async function fetchMeme(category){
  const controller=new AbortController();
- const timer=setTimeout(()=>controller.abort(),ms);
+ const timer=setTimeout(()=>controller.abort(),9000);
+
  try{
-  const response=await fetch(url,{signal:controller.signal});
+  const response=await fetch(API+category,{
+   signal:controller.signal,
+   cache:"no-store"
+  });
+
   if(!response.ok) throw new Error("HTTP "+response.status);
-  return await response.json();
+
+  const data=await response.json();
+
+  if(data.type!=="image" || !data.url) return null;
+
+  return {
+   title:data.title || "Meme",
+   image:data.url,
+   category:category,
+   author:data.author || ""
+  };
  }finally{
   clearTimeout(timer);
  }
 }
 
-async function getRedditPosts(sub){
- const url=`https://www.reddit.com/r/${sub}/top.json?limit=100&t=all&raw_json=1`;
- const proxies=[
-  url,
-  "https://corsproxy.io/?url="+encodeURIComponent(url),
-  "https://api.allorigins.win/raw?url="+encodeURIComponent(url)
- ];
+// Încarcă pe rând, cu maximum 3 cereri simultane.
+async function loadCategory(category,amount=5){
+ const results=[];
+ let attempts=0;
 
- for(const address of proxies){
+ while(results.length<amount && attempts<amount*3){
+  attempts++;
   try{
-   const data=await fetchWithTimeout(address);
-   const posts=data?.data?.children;
-   if(Array.isArray(posts)) return posts.map(x=>x.data).filter(validPost);
+   const meme=await fetchMeme(category);
+   if(meme && !memes.some(x=>x.image===meme.image) &&
+      !results.some(x=>x.image===meme.image)){
+    results.push(meme);
+   }
   }catch(error){
-   // Sursa nu răspunde: încercăm următoarea variantă.
+   // Dacă sursa nu răspunde, trecem mai departe.
   }
  }
- return [];
+ return results;
 }
 
-async function loadMemes(){
- statusBox.style.display="block";
- statusBox.innerHTML='<strong>Se accesează serverele MemeZone...</strong>Vă rugăm să așteptați. Se încarcă biblioteca de meme-uri.<div class="spinner"></div>';
- retry.style.display="none";
- more.style.display="none";
+async function loadAll(){
+ showLoading();
+ gallery.innerHTML="";
  empty.style.display="none";
-
- const tasks=sources.flatMap(group=>
-  group.subs.map(async sub=>{
-   const posts=await getRedditPosts(sub);
-   return posts.map(post=>({
-    title:post.title || "Meme",
-    image:imageFromPost(post),
-    category:group.cat,
-    id:post.id
-   }));
-  })
- );
-
- const results=await Promise.allSettled(tasks);
+ more.style.display="none";
+ retry.style.display="none";
  memes=[];
- const seen=new Set();
 
- results.forEach(result=>{
-  if(result.status!=="fulfilled") return;
-  result.value.forEach(meme=>{
-   if(!meme.image || seen.has(meme.id)) return;
-   seen.add(meme.id);
-   memes.push(meme);
-  });
+ let index=0;
+ const workers=Array.from({length:3},async()=>{
+  while(index<categories.length){
+   const category=categories[index++];
+   const results=await loadCategory(category,5);
+   memes.push(...results);
+   applyFilters();
+  }
  });
+
+ await Promise.all(workers);
 
  statusBox.style.display="none";
 
  if(memes.length===0){
   statusBox.style.display="block";
-  statusBox.innerHTML="<strong>Nu am putut încărca meme-urile.</strong>Sursele nu au răspuns. Puteți încerca din nou.";
+  statusBox.innerHTML=
+   "<strong>Nu am putut încărca meme-urile.</strong>"+
+   "Sursa nu a răspuns momentan. Încercați din nou.";
   retry.style.display="inline-block";
   return;
  }
@@ -205,11 +205,14 @@ async function loadMemes(){
 
 function applyFilters(){
  const query=document.getElementById("search").value.toLowerCase().trim();
+
  visible=memes.filter(m=>{
-  const categoryMatch=currentCategory==="all" || m.category===currentCategory;
+  const categoryMatch=
+   currentCategory==="all" || m.category===currentCategory;
   const searchMatch=m.title.toLowerCase().includes(query);
   return categoryMatch && searchMatch;
  });
+
  shown=0;
  gallery.innerHTML="";
  empty.style.display=visible.length?"none":"block";
@@ -217,23 +220,46 @@ function applyFilters(){
 }
 
 function renderMore(){
- const batch=visible.slice(shown,shown+perPage);
+ const batch=visible.slice(shown,shown+PER_PAGE);
+
  batch.forEach(m=>{
   const card=document.createElement("article");
   card.className="card";
+
   const img=document.createElement("img");
   img.src=m.image;
   img.alt="Meme";
   img.loading="lazy";
   img.onerror=()=>card.remove();
+
   const title=document.createElement("p");
   title.textContent=m.title;
+
   card.append(img,title);
   card.addEventListener("click",()=>openModal(m));
   gallery.appendChild(card);
  });
+
  shown+=batch.length;
  more.style.display=shown<visible.length?"inline-block":"none";
+}
+
+async function loadMore(){
+ more.disabled=true;
+ more.textContent="Se încarcă...";
+
+ const selected=currentCategory==="all"
+  ? categories
+  : [currentCategory];
+
+ for(const category of selected){
+  const results=await loadCategory(category,5);
+  memes.push(...results);
+ }
+
+ applyFilters();
+ more.disabled=false;
+ more.textContent="Încarcă mai multe meme-uri";
 }
 
 function openModal(m){
@@ -242,27 +268,32 @@ function openModal(m){
  document.getElementById("modal").classList.add("show");
 }
 
-document.getElementById("close").onclick=()=>{
+function closeModal(){
  document.getElementById("modal").classList.remove("show");
-};
+ document.getElementById("modalImg").src="";
+}
+
+document.getElementById("close").onclick=closeModal;
 document.getElementById("modal").onclick=e=>{
- if(e.target.id==="modal") e.currentTarget.classList.remove("show");
+ if(e.target.id==="modal") closeModal();
 };
 
 document.getElementById("search").addEventListener("input",applyFilters);
-document.getElementById("more").addEventListener("click",renderMore);
-document.getElementById("retry").addEventListener("click",loadMemes);
+more.addEventListener("click",loadMore);
+retry.addEventListener("click",loadAll);
 
 document.querySelectorAll(".categories button").forEach(button=>{
  button.addEventListener("click",()=>{
-  document.querySelectorAll(".categories button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".categories button")
+   .forEach(b=>b.classList.remove("active"));
+
   button.classList.add("active");
   currentCategory=button.dataset.cat;
   applyFilters();
  });
 });
 
-loadMemes();
+loadAll();
 </script>
 </body>
 </html>
