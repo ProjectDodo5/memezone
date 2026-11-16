@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MemeZone 😂</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0d0d16;color:white;font-family:Arial,sans-serif}
+header{padding:22px 7%;background:#151523;border-bottom:1px solid #292943;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:25px;font-weight:900;color:white}
+.logo span{color:#a78bfa}
+header a{color:#c4b5fd;text-decoration:none}
+main{width:90%;max-width:1150px;margin:auto}
+.hero{text-align:center;padding:65px 10px 35px}
+.hero h1{font-size:clamp(35px,7vw,65px);margin:0}
+.hero h1 span{color:#a78bfa}
+.hero p{color:#aaaabe;font-size:16px}
+input{width:100%;max-width:500px;padding:15px;border-radius:12px;border:1px solid #393750;background:#191927;color:white;font-size:16px;margin-top:15px}
+h2{margin-top:35px}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}
+button{background:#201e32;color:white;border:1px solid #393450;border-radius:25px;padding:11px 17px;cursor:pointer}
+button.active,button:hover{background:#7655d9}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.card{background:#191927;border:1px solid #302d45;border-radius:16px;overflow:hidden;transition:.2s}
+.card:hover{transform:translateY(-4px)}
+.card img{width:100%;height:220px;object-fit:cover;background:#252238}
+.content{padding:16px}
+.content small{color:#b69aff;font-weight:bold}
+.content h3{margin:10px 0}
+.content p{color:#aaaabe;font-size:14px;line-height:1.5}
+.content a{color:#b69aff;text-decoration:none;font-size:13px}
+footer{text-align:center;color:#77758b;padding:35px 10px;margin-top:40px}
+.empty{display:none;color:#aaa;text-align:center;padding:30px}
+@media(max-width:550px){header{padding:18px 5%}.hero{padding-top:45px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">MEME<span>ZONE</span> 😂</div>
+ <a href="#memeuri">Explorează</a>
+</header>
+
+<main>
+<section class="hero">
+ <h1>Welcome to <span>MemeZone!</span></h1>
+ <p>Meme-uri românești, gaming, școală și cele mai amuzante reacții de pe internet.</p>
+ <input id="search" placeholder="🔎 Caută meme-uri...">
+</section>
+
+<section id="memeuri">
+<h2>🔥 Colecția de meme-uri</h2>
+<div class="filters">
+<button class="active" data-cat="all">Toate</button>
+<button data-cat="ro">🇷🇴 România</button>
+<button data-cat="gaming">🎮 Gaming</button>
+<button data-cat="school">🏫 Școală</button>
+<button data-cat="reaction">😂 Reaction</button>
+<button data-cat="brainrot">💀 Brainrot</button>
+</div>
+
+<div class="grid" id="grid">
+
+<div class="card" data-cat="reaction">
+<img loading="lazy" src="https://i.imgflip.com/30b1gx.jpg" alt="Distracted Boyfriend">
+<div class="content"><small>REACTION MEME</small><h3>Distracted Boyfriend</h3><p>Unul dintre cele mai cunoscute meme-uri de pe internet.</p><a href="https://knowyourmeme.com/memes/distracted-boyfriend" target="_blank">Mai multe variante ↗</a></div>
+</div>
+
+<div class="card" data-cat="reaction">
+<img loading="lazy" src="https://i.imgflip.com/1g8my4.jpg" alt="Drake meme">
+<div class="content"><small>REACTION MEME</small><h3>Drake Hotline Bling</h3><p>Două alegeri. Una clar mai bună.</p><a href="https://knowyourmeme.com/memes/drakeposting" target="_blank">Mai multe variante ↗</a></div>
+</div>
+
+<div class="card" data-cat="reaction">
+<img loading="lazy" src="https://i.imgflip.com/1bij.jpg" alt="One Does Not Simply">
+<div class="content"><small>CLASSIC MEME</small><h3>One Does Not Simply</h3><p>Când cineva spune că este foarte simplu.</p><a href="https://knowyourmeme.com/memes/one-does-not-simply" target="_blank">Mai multe variante ↗</a></div>
+</div>
+
+<div class="card" data-cat="ro">
+<img loading="lazy" src="https://placehold.co/600x400/252044/ffffff?text=MEME+ROMANESC" alt="Meme românesc">
+<div class="content"><small>🇷🇴 ROMÂNIA</small><h3>Meme-uri românești</h3><p>Glume și imagini amuzante din comunitatea românească.</p><a href="https://2lol.ro/" target="_blank">Vezi meme-uri românești ↗</a></div>
+</div>
+
+<div class="card" data-cat="gaming">
+<img loading="lazy" src="https://placehold.co/600x400/183d32/ffffff?text=MINECRAFT+MEMES" alt="Minecraft memes">
+<div class="content"><small>🎮 MINECRAFT</small><h3>Minecraft Memes</h3><p>Glume și momente clasice din Minecraft.</p><a href="https://www.reddit.com/r/MinecraftMemes/" target="_blank">Vezi colecția ↗</a></div>
+</div>
+
+<div class="card" data-cat="gaming">
+<img loading="lazy" src="https://placehold.co/600x400/30234c/ffffff?text=ROBLOX+MEMES" alt="Roblox memes">
+<div class="content"><small>🎮 ROBLOX</small><h3>Roblox Memes</h3><p>Momente amuzante din universul Roblox.</p><a href="https://www.reddit.com/r/roblox/" target="_blank">Vezi comunitatea ↗</a></div>
+</div>
+
+<div class="card" data-cat="school">
+<img loading="lazy" src="https://placehold.co/600x400/40301b/ffffff?text=SCHOOL+MEMES" alt="School memes">
+<div class="content"><small>🏫 SCHOOL</small><h3>School Memes</h3><p>Teste, teme, profesori și viața de elev.</p><a href="https://www.reddit.com/r/memes/" target="_blank">Vezi meme-uri ↗</a></div>
+</div>
+
+<div class="card" data-cat="brainrot">
+<img loading="lazy" src="https://placehold.co/600x400/43203d/ffffff?text=BRAINROT" alt="Brainrot memes">
+<div class="content"><small>💀 BRAINROT</small><h3>Brainrot Memes</h3><p>Umor absurd și trenduri virale.</p><a href="https://knowyourmeme.com/" target="_blank">Explorează trenduri ↗</a></div>
+</div>
+
+</div>
+<div class="empty" id="empty">Nu am găsit meme-uri. Încearcă altă căutare!</div>
+</section>
+</main>
+
+<footer>© 2026 MemeZone · Made for meme lovers 😂</footer>
+
+<script>
+let category="all";
+const cards=[...document.querySelectorAll(".card")];
+
+function update(){
+ const q=document.getElementById("search").value.toLowerCase();
+ let count=0;
+ cards.forEach(card=>{
+  const cat=category==="all"||card.dataset.cat===category;
+  const text=card.innerText.toLowerCase().includes(q);
+  card.style.display=cat&&text?"block":"none";
+  if(cat&&text)count++;
+ });
+ document.getElementById("empty").style.display=count?"none":"block";
+}
+
+document.querySelectorAll(".filters button").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+  document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  category=btn.dataset.cat;
+  update();
+ });
+});
+document.getElementById("search").addEventListener("input",update);
+</script>
+</body>
+</html>
