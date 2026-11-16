@@ -4,219 +4,289 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MemeZone 😂</title>
+<title>MemeZone — The Meme Universe</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#0b0b12;color:#fff;font-family:Arial,sans-serif}
-header{height:70px;background:#141421;border-bottom:1px solid #29283b;position:sticky;top:0;z-index:5}
-.nav{max-width:1250px;width:92%;height:100%;margin:auto;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:25px;font-weight:900}.logo span{color:#a78bfa}
-.nav small{color:#aaa}
-main{max-width:1250px;width:92%;margin:auto}
-.hero{text-align:center;padding:65px 10px 40px}
-.hero h1{font-size:clamp(38px,7vw,70px);margin:0;letter-spacing:-3px}
+header{height:70px;background:#141421;border-bottom:1px solid #29283b;position:sticky;top:0;z-index:10}
+.nav{max-width:1350px;width:94%;height:100%;margin:auto;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:25px;font-weight:950;letter-spacing:-1px}
+.logo span{color:#a78bfa}
+.navright{color:#aaa;font-size:12px}
+main{width:94%;max-width:1350px;margin:auto}
+.hero{text-align:center;padding:65px 10px 35px}
+.hero h1{font-size:clamp(40px,7vw,75px);margin:0;letter-spacing:-3px}
 .hero h1 span{color:#a78bfa}
-.hero p{color:#aaaabe;line-height:1.6}
-.search{width:min(550px,100%);padding:16px;background:#171724;border:1px solid #38354d;border-radius:13px;color:white;font-size:16px;margin-top:18px;outline:none}
+.hero p{color:#aaaabe;font-size:15px}
+.search{width:min(600px,100%);padding:16px;background:#171724;border:1px solid #38354d;border-radius:13px;color:white;font-size:16px;margin-top:18px;outline:none}
 .search:focus{border-color:#a78bfa}
-.categories{display:flex;gap:9px;flex-wrap:wrap;margin:25px 0}
-.categories button{background:#191927;border:1px solid #302d43;color:#bbb;padding:11px 17px;border-radius:30px;cursor:pointer;font-weight:bold}
-.categories button.active,.categories button:hover{background:#704bd0;color:white;border-color:#a78bfa}
-h2{font-size:25px;margin:35px 0 15px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:#171724;border:1px solid #302d43;border-radius:16px;overflow:hidden;cursor:pointer;transition:.2s}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin:30px 0 18px}
+.toolbar h2{margin:0;font-size:24px}
+.count{color:#aaa;font-size:13px}
+.categories{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}
+button{cursor:pointer;color:white;background:#191927;border:1px solid #302d43;border-radius:25px;padding:11px 16px;font-weight:bold}
+button:hover,button.active{background:#704bd0;border-color:#a78bfa}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
+.card{background:#171724;border:1px solid #302d43;border-radius:15px;overflow:hidden;cursor:pointer;transition:.2s;min-width:0}
 .card:hover{transform:translateY(-4px);border-color:#9071e7}
-.card img{width:100%;height:240px;object-fit:contain;background:#11111a;display:block}
-.info{padding:14px}
-.info small{color:#b99aff;font-size:11px;font-weight:bold;text-transform:uppercase}
-.info h3{margin:8px 0;font-size:17px}
-.info p{color:#aaaabe;font-size:13px;margin:0}
-.empty{text-align:center;padding:35px;color:#aaa;display:none}
-.modal{display:none;position:fixed;inset:0;background:#000e;z-index:20;align-items:center;justify-content:center;padding:20px}
+.card img{width:100%;height:230px;object-fit:contain;background:#101018;display:block}
+.info{padding:13px}
+.info small{color:#b99aff;font-size:10px;font-weight:bold;text-transform:uppercase}
+.info h3{font-size:14px;line-height:1.4;margin:8px 0 0;overflow-wrap:anywhere}
+.empty,.loading{text-align:center;color:#aaa;padding:45px 10px}
+#more{display:block;margin:30px auto;padding:14px 25px;border-radius:12px;background:#704bd0;border:0}
+#more:disabled{opacity:.5;cursor:default}
+.modal{display:none;position:fixed;inset:0;background:#000e;z-index:30;align-items:center;justify-content:center;padding:20px}
 .modal.show{display:flex}
-.modal-content{background:#171724;border:1px solid #49415f;border-radius:17px;padding:15px;max-width:850px;width:100%;max-height:90vh;overflow:auto;text-align:center}
-.modal img{max-width:100%;max-height:65vh;object-fit:contain}
-.modal h3{margin:12px}
-.close{position:fixed;right:22px;top:18px;background:#30234e;border:0;color:white;font-size:24px;border-radius:50%;width:42px;height:42px;cursor:pointer}
-footer{text-align:center;color:#77758a;padding:40px 10px}
-@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:550px){.grid{grid-template-columns:1fr}.card img{height:260px}.hero{padding-top:45px}.nav small{display:none}}
+.modalbox{background:#171724;border:1px solid #49415f;border-radius:17px;padding:15px;max-width:950px;width:100%;max-height:90vh;overflow:auto;text-align:center}
+.modalbox img{max-width:100%;max-height:70vh;object-fit:contain}
+.modalbox h3{font-size:17px}
+.close{position:fixed;right:20px;top:18px;background:#30234e;font-size:25px;width:43px;height:43px;border-radius:50%;padding:0}
+footer{text-align:center;color:#77758a;padding:40px 10px;margin-top:40px;border-top:1px solid #242336}
+@media(max-width:1050px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:450px){.grid{grid-template-columns:1fr}.card img{height:270px}.navright{display:none}}
 </style>
 </head>
 <body>
 <header>
-<div class="nav">
-<div class="logo">MEME<span>ZONE</span> 😂</div>
-<small>THE HOME OF MEMES</small>
-</div>
+ <div class="nav">
+  <div class="logo">MEME<span>ZONE</span> 😂</div>
+  <div class="navright">THE INTERNET'S MEME GALLERY</div>
+ </div>
 </header>
 
 <main>
 <section class="hero">
-<h1>Welcome to <span>MemeZone.</span></h1>
-<p>Toate meme-urile tale preferate într-un singur loc.</p>
-<input class="search" id="search" placeholder="🔎 Caută meme-uri...">
+ <h1>Welcome to <span>MemeZone.</span></h1>
+ <p>Hundreds of memes. One place. Infinite laughs.</p>
+ <input class="search" id="search" placeholder="🔎 Search memes...">
 </section>
 
-<h2>🔥 Explorează galeria</h2>
+<div class="toolbar">
+ <h2>🔥 Meme Gallery</h2>
+ <span class="count" id="count">Se încarcă meme-urile...</span>
+</div>
+
 <div class="categories">
-<button class="active" data-cat="all">Toate</button>
-<button data-cat="ro">🇷🇴 Românești</button>
-<button data-cat="gaming">🎮 Gaming</button>
-<button data-cat="school">🏫 Școală</button>
-<button data-cat="reaction">😂 Reaction</button>
-<button data-cat="brainrot">💀 Brainrot</button>
+ <button class="active" data-cat="all">🌎 All</button>
+ <button data-cat="ro">🇷🇴 Romanian</button>
+ <button data-cat="gaming">🎮 Gaming</button>
+ <button data-cat="school">🏫 School</button>
+ <button data-cat="reaction">😂 Memes</button>
+ <button data-cat="brainrot">💀 Brainrot</button>
 </div>
 
-<div class="grid" id="grid">
-
-<!-- REACTION MEMES -->
-<div class="card" data-cat="reaction">
-<img src="https://i.imgflip.com/30b1gx.jpg" alt="Distracted Boyfriend">
-<div class="info"><small>REACTION</small><h3>Distracted Boyfriend</h3><p>Clasicul meme cu iubitul distras.</p></div>
-</div>
-
-<div class="card" data-cat="reaction">
-<img src="https://i.imgflip.com/1g8my4.jpg" alt="Drake Hotline Bling">
-<div class="info"><small>REACTION</small><h3>Drake Hotline Bling</h3><p>Două variante, o alegere dificilă.</p></div>
-</div>
-
-<div class="card" data-cat="reaction">
-<img src="https://i.imgflip.com/1bij.jpg" alt="One Does Not Simply">
-<div class="info"><small>CLASSIC</small><h3>One Does Not Simply</h3><p>Când cineva spune că e ușor.</p></div>
-</div>
-
-<div class="card" data-cat="reaction">
-<img src="https://i.imgflip.com/1bip.jpg" alt="Success Kid">
-<div class="info"><small>REACTION</small><h3>Success Kid</h3><p>Când îți iese ceva din prima.</p></div>
-</div>
-
-<div class="card" data-cat="reaction">
-<img src="https://i.imgflip.com/26am.jpg" alt="Bad Luck Brian">
-<div class="info"><small>CLASSIC</small><h3>Bad Luck Brian</h3><p>Când nimic nu merge cum trebuie.</p></div>
-</div>
-
-<div class="card" data-cat="reaction">
-<img src="https://i.imgflip.com/1ur9b0.jpg" alt="Change My Mind">
-<div class="info"><small>REACTION</small><h3>Change My Mind</h3><p>Ai o părere? Demonstreaz-o!</p></div>
-</div>
-
-<!-- GAMING -->
-<div class="card" data-cat="gaming">
-<img src="https://placehold.co/800x500/182b27/ffffff?text=MINECRAFT+MEMES" alt="Minecraft memes">
-<div class="info"><small>MINECRAFT</small><h3>Minecraft Moments</h3><p>Viața unui jucător Minecraft.</p></div>
-</div>
-
-<div class="card" data-cat="gaming">
-<img src="https://placehold.co/800x500/30234b/ffffff?text=ROBLOX+MEMES" alt="Roblox memes">
-<div class="info"><small>ROBLOX</small><h3>Roblox Moments</h3><p>Când intri doar pentru cinci minute.</p></div>
-</div>
-
-<div class="card" data-cat="gaming">
-<img src="https://placehold.co/800x500/24304b/ffffff?text=GAMER+REACTION" alt="Gaming reaction">
-<div class="info"><small>GAMING</small><h3>Gamer Reactions</h3><p>Reacții după un meci imposibil.</p></div>
-</div>
-
-<!-- SCHOOL -->
-<div class="card" data-cat="school">
-<img src="https://placehold.co/800x500/40301b/ffffff?text=SCHOOL+MEMES" alt="School memes">
-<div class="info"><small>ȘCOALĂ</small><h3>Când profesorul spune test</h3><p>Toată clasa în același moment.</p></div>
-</div>
-
-<div class="card" data-cat="school">
-<img src="https://placehold.co/800x500/39304b/ffffff?text=HOMEWORK" alt="Homework meme">
-<div class="info"><small>ȘCOALĂ</small><h3>Tema pentru mâine</h3><p>Când afli că ai uitat complet.</p></div>
-</div>
-
-<div class="card" data-cat="school">
-<img src="https://placehold.co/800x500/253c49/ffffff?text=EXAM+TIME" alt="Exam meme">
-<div class="info"><small>ȘCOALĂ</small><h3>Înainte de test</h3><p>Ai învățat tot, dar nu mai știi nimic.</p></div>
-</div>
-
-<!-- ROMANIA -->
-<div class="card" data-cat="ro">
-<img src="https://placehold.co/800x500/49301d/ffffff?text=ROMANIAN+MEMES" alt="Romanian memes">
-<div class="info"><small>ROMÂNIA</small><h3>Meme-uri românești</h3><p>Umor românesc și situații cunoscute.</p></div>
-</div>
-
-<div class="card" data-cat="ro">
-<img src="https://placehold.co/800x500/3d263b/ffffff?text=ROMANIA+POV" alt="Romanian POV">
-<div class="info"><small>ROMÂNIA</small><h3>POV: România</h3><p>Momente pe care le înțelegem doar noi.</p></div>
-</div>
-
-<div class="card" data-cat="ro">
-<img src="https://placehold.co/800x500/293b30/ffffff?text=ROMANIAN+REACTION" alt="Romanian reaction">
-<div class="info"><small>ROMÂNIA</small><h3>Reacții românești</h3><p>Când auzi o veste neașteptată.</p></div>
-</div>
-
-<!-- BRAINROT -->
-<div class="card" data-cat="brainrot">
-<img src="https://placehold.co/800x500/48213f/ffffff?text=BRAINROT" alt="Brainrot">
-<div class="info"><small>BRAINROT</small><h3>Brainrot Collection</h3><p>Internetul a luat-o razna.</p></div>
-</div>
-
-<div class="card" data-cat="brainrot">
-<img src="https://placehold.co/800x500/3d284e/ffffff?text=SKIBIDI" alt="Skibidi">
-<div class="info"><small>BRAINROT</small><h3>Skibidi Moments</h3><p>Nu mai există explicații.</p></div>
-</div>
-
-<div class="card" data-cat="brainrot">
-<img src="https://placehold.co/800x500/49331f/ffffff?text=WHAT+IS+THIS" alt="Absurd meme">
-<div class="info"><small>BRAINROT</small><h3>Absolute Chaos</h3><p>Ce tocmai am văzut?</p></div>
-</div>
-
-</div>
-<div class="empty" id="empty">Nu am găsit rezultate 😢</div>
+<div class="loading" id="loading">⏳ Se caută meme-uri pe internet...</div>
+<div class="grid" id="grid"></div>
+<div class="empty" id="empty" style="display:none">Nu am găsit meme-uri.</div>
+<button id="more" style="display:none">Încarcă mai multe meme-uri ↓</button>
 </main>
 
-<footer>© 2026 MemeZone · All memes, one place.</footer>
+<footer>MEMEZONE © 2026 · All memes in one place.</footer>
 
 <div class="modal" id="modal">
-<button class="close" id="close">×</button>
-<div class="modal-content">
-<img id="modalImg" src="" alt="">
-<h3 id="modalTitle"></h3>
-</div>
+ <button class="close" id="close">×</button>
+ <div class="modalbox">
+  <img id="modalImg" alt="Meme">
+  <h3 id="modalTitle"></h3>
+ </div>
 </div>
 
 <script>
-const cards=[...document.querySelectorAll('.card')];
-const search=document.getElementById('search');
-let category='all';
+const communities = [
+ {name:"memes",cat:"reaction"},
+ {name:"dankmemes",cat:"reaction"},
+ {name:"me_irl",cat:"reaction"},
+ {name:"wholesomememes",cat:"reaction"},
+ {name:"terriblefacebookmemes",cat:"reaction"},
+ {name:"MinecraftMemes",cat:"gaming"},
+ {name:"RobloxMemes",cat:"gaming"},
+ {name:"gamingmemes",cat:"gaming"},
+ {name:"SchoolMemes",cat:"school"},
+ {name:"ProgrammerHumor",cat:"gaming"},
+ {name:"romemes",cat:"ro"},
+ {name:"okprietenretardat",cat:"ro"}
+];
 
-function update(){
-let q=search.value.toLowerCase();
-let count=0;
-cards.forEach(card=>{
-let okCat=category==='all'||card.dataset.cat===category;
-let okText=card.innerText.toLowerCase().includes(q);
-card.style.display=okCat&&okText?'block':'none';
-if(okCat&&okText)count++;
-});
-document.getElementById('empty').style.display=count?'none':'block';
+let allMemes=[];
+let shown=0;
+let category="all";
+let query="";
+const grid=document.getElementById("grid");
+
+function getImage(post){
+ let url="";
+ if(post.preview?.images?.[0]?.source?.url){
+  url=post.preview.images[0].source.url;
+ }else if(post.post_hint==="image"){
+  url=post.url_overridden_by_dest||post.url;
+ }
+ if(!url)return "";
+ return url.replaceAll("&amp;","&");
 }
-document.querySelectorAll('.categories button').forEach(btn=>{
-btn.onclick=()=>{
-document.querySelectorAll('.categories button').forEach(b=>b.classList.remove('active'));
-btn.classList.add('active');
-category=btn.dataset.cat;
-update();
-};
-});
-search.addEventListener('input',update);
 
-const modal=document.getElementById('modal');
-cards.forEach(card=>{
-card.addEventListener('click',()=>{
-const img=card.querySelector('img');
-document.getElementById('modalImg').src=img.src;
-document.getElementById('modalTitle').innerText=card.querySelector('h3').innerText;
-modal.classList.add('show');
+function validPost(post){
+ if(!post||post.over_18||post.is_video||post.stickied)return false;
+ const url=getImage(post);
+ if(!url)return false;
+ if(!/^https?:\/\//i.test(url))return false;
+ if(/\.gifv?(\?|$)/i.test(url))return false;
+ return true;
+}
+
+async function getCommunity(community){
+ try{
+  const url=`https://www.reddit.com/r/${community.name}/top.json?limit=100&t=all&raw_json=1`;
+  const response=await fetch(url);
+  if(!response.ok)throw new Error("Unavailable");
+  const data=await response.json();
+  return (data.data?.children||[])
+   .map(x=>x.data)
+   .filter(validPost)
+   .map(post=>({
+    id:post.id,
+    title:post.title||"Meme",
+    image:getImage(post),
+    cat:community.cat,
+    community:community.name
+   }));
+ }catch(e){
+  return [];
+ }
+}
+
+function addCard(meme){
+ const card=document.createElement("article");
+ card.className="card";
+ card.dataset.cat=meme.cat;
+
+ const img=document.createElement("img");
+ img.loading="lazy";
+ img.alt=meme.title;
+ img.src=meme.image;
+
+ img.onerror=()=>{
+  card.remove();
+  allMemes=allMemes.filter(x=>x.id!==meme.id);
+  updateCount();
+ };
+
+ const info=document.createElement("div");
+ info.className="info";
+ const tag=document.createElement("small");
+ tag.textContent=meme.community;
+ const title=document.createElement("h3");
+ title.textContent=meme.title;
+
+ info.append(tag,title);
+ card.append(img,info);
+
+ card.onclick=()=>{
+  document.getElementById("modalImg").src=meme.image;
+  document.getElementById("modalTitle").textContent=meme.title;
+  document.getElementById("modal").classList.add("show");
+ };
+ return card;
+}
+
+function updateCount(){
+ document.getElementById("count").textContent=
+ allMemes.length+" meme-uri găsite";
+}
+
+function render(){
+ grid.innerHTML="";
+ const filtered=allMemes.filter(m=>{
+  const matchesCat=category==="all"||m.cat===category;
+  const text=(m.title+" "+m.community).toLowerCase();
+  return matchesCat&&text.includes(query);
+ });
+
+ const batch=filtered.slice(0,shown);
+ batch.forEach(m=>grid.appendChild(addCard(m)));
+
+ document.getElementById("empty").style.display=
+ filtered.length?"none":"block";
+
+ const more=document.getElementById("more");
+ more.style.display=shown<filtered.length?"block":"none";
+ more.disabled=false;
+ more.textContent="Încarcă mai multe meme-uri ↓";
+}
+
+function updateSearch(){
+ query=document.getElementById("search").value.toLowerCase();
+ shown=60;
+ render();
+}
+
+document.getElementById("search").addEventListener("input",updateSearch);
+
+document.querySelectorAll(".categories button").forEach(btn=>{
+ btn.onclick=()=>{
+  document.querySelectorAll(".categories button")
+   .forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  category=btn.dataset.cat;
+  shown=60;
+  render();
+ };
 });
+
+document.getElementById("more").onclick=()=>{
+ shown+=60;
+ render();
+};
+
+document.getElementById("close").onclick=()=>{
+ document.getElementById("modal").classList.remove("show");
+};
+
+document.getElementById("modal").onclick=e=>{
+ if(e.target.id==="modal")
+ document.getElementById("modal").classList.remove("show");
+};
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape")
+ document.getElementById("modal").classList.remove("show");
 });
-document.getElementById('close').onclick=()=>modal.classList.remove('show');
-modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('show')});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('show')});
+
+async function start(){
+ const loading=document.getElementById("loading");
+
+ // Încarcă din mai multe comunități.
+ const results=await Promise.all(
+  communities.map(c=>getCommunity(c))
+ );
+
+ const seen=new Set();
+ results.flat().forEach(m=>{
+  if(!seen.has(m.id)){
+   seen.add(m.id);
+   allMemes.push(m);
+  }
+ });
+
+ // Amestecă rezultatele.
+ for(let i=allMemes.length-1;i>0;i--){
+  const j=Math.floor(Math.random()*(i+1));
+  [allMemes[i],allMemes[j]]=[allMemes[j],allMemes[i]];
+ }
+
+ loading.style.display="none";
+ updateCount();
+ shown=60;
+ render();
+
+ if(!allMemes.length){
+  loading.style.display="block";
+  loading.textContent="Nu s-au putut încărca meme-uri. Serverele sursă pot fi temporar indisponibile.";
+ }
+}
+
+start();
 </script>
 </body>
 </html>
